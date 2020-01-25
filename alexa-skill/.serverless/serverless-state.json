@@ -167,10 +167,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/boyyah-alexa-skill/dev/1579962458486-2020-01-25T14:27:38.486Z/boyyah-alexa-skill.zip"
+                "S3Key": "serverless/boyyah-alexa-skill/dev/1579968173557-2020-01-25T16:02:53.557Z/boyyah-alexa-skill.zip"
               },
               "FunctionName": "boyyah-alexa-skill-dev-blood-pressure",
-              "Handler": "handlers/handler.handler",
+              "Handler": "handler.handler",
               "MemorySize": 1024,
               "Role": {
                 "Fn::GetAtt": [
@@ -195,14 +195,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "BloodDashpressureLambdaVersiongOZ5HyRig9Mdt2KUDwxBeQi5NALEvb3CuMl53eFk9Y": {
+          "BloodDashpressureLambdaVersioneUmNSCz2gZvyaXYtMj7aWCZ24KRaq5jRyEJW9lFpM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BloodDashpressureLambdaFunction"
               },
-              "CodeSha256": "vPpLLvSYT9v8DOwsnOsSW79g+wMdC7Zk0o9HBPvfGcI="
+              "CodeSha256": "Tdz9cnoKarj+p+zdWVX2vKS8S4ao+rukNjIumhqvXHo="
             }
           },
           "BloodDashpressureLambdaPermissionAlexaSkill1": {
@@ -229,7 +229,7 @@
           "BloodDashpressureLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BloodDashpressureLambdaVersiongOZ5HyRig9Mdt2KUDwxBeQi5NALEvb3CuMl53eFk9Y"
+              "Ref": "BloodDashpressureLambdaVersioneUmNSCz2gZvyaXYtMj7aWCZ24KRaq5jRyEJW9lFpM"
             }
           }
         }
@@ -392,7 +392,7 @@
     "pluginsData": {},
     "functions": {
       "blood-pressure": {
-        "handler": "handlers/handler.handler",
+        "handler": "handler.handler",
         "events": [
           {
             "alexaSkill": "amzn1.ask.skill.c866fd21-4a28-4b16-a07f-74330ba458d6"
@@ -404,7 +404,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "BloodDashpressureLambdaVersiongOZ5HyRig9Mdt2KUDwxBeQi5NALEvb3CuMl53eFk9Y"
+        "versionLogicalId": "BloodDashpressureLambdaVersioneUmNSCz2gZvyaXYtMj7aWCZ24KRaq5jRyEJW9lFpM"
       }
     },
     "serviceFilename": "serverless.yml",
@@ -413,7 +413,7 @@
     "artifact": "/Users/alexcallow/Sites/boy-yah/alexa-skill/.serverless/boyyah-alexa-skill.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/boyyah-alexa-skill/dev/1579962458486-2020-01-25T14:27:38.486Z",
+    "artifactDirectoryName": "serverless/boyyah-alexa-skill/dev/1579968173557-2020-01-25T16:02:53.557Z",
     "artifact": "boyyah-alexa-skill.zip"
   }
 }

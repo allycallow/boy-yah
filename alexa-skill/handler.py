@@ -27,7 +27,7 @@ def blood_pressure_intent_handler(handler_input):
     ].value
 
     api_services = ApiServices()
-    api_services.store_blood_pressure()
+    api_services.store_blood_pressure(number)
 
     speech_text = f"working {number}"
 
