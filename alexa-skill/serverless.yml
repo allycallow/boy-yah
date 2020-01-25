@@ -39,7 +39,7 @@ custom:
           en-GB:
             interactionModel:
               languageModel:
-                invocationName: boyyah
+                invocationName: boy yah
                 intents:
                   - name: AMAZON.CancelIntent
                     samples: []
