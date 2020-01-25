@@ -53,7 +53,9 @@ custom:
                     samples: []
                   - name: BloodPressure
                     slots:
-                      - name: number
+                      - name: systolic_number
+                        type: AMAZON.NUMBER
+                      - name: diastolic_number
                         type: AMAZON.NUMBER
                     samples:
-                      - "store my blood pressure {number}"
+                      - "store my blood pressure {systolic_number} over {diastolic_number}"

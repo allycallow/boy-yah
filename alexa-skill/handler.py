@@ -22,14 +22,13 @@ def blood_pressure_intent_handler(handler_input):
     response_builder = handler_input.response_builder
 
     print(handler_input.request_envelope.request)
-    number = handler_input.request_envelope.request.intent.slots[
-        "number"
-    ].value
+    systolic_number = handler_input.request_envelope.request.intent.slots["systolic_number"].value
+    diastolic_number = handler_input.request_envelope.request.intent.slots["diastolic_number"].value
 
     api_services = ApiServices()
-    api_services.store_blood_pressure(number)
+    api_services.store_blood_pressure(systolic_number, diastolic_number)
 
-    speech_text = f"working {number}"
+    speech_text = f"working {systolic_number} {diastolic_number}"
 
     return response_builder.speak(speech_text).set_should_end_session(False).response
 
