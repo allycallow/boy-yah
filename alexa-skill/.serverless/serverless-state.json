@@ -1,0 +1,407 @@
+{
+  "service": {
+    "service": "boyyah-alexa-skill",
+    "serviceObject": {
+      "name": "boyyah-alexa-skill"
+    },
+    "provider": {
+      "stage": "dev",
+      "variableSyntax": "\\${([ ~:a-zA-Z0-9._@'\",\\-\\/\\(\\)*?]+?)}",
+      "name": "aws",
+      "runtime": "python3.7",
+      "region": "eu-west-1",
+      "versionFunctions": true,
+      "remoteFunctionData": null,
+      "environment": {
+        "ALEXA_SKILL_ID": "amzn1.ask.skill.860230ae-65fe-45ff-923e-9550b02d8dd2",
+        "AMAZON_CLIENT_ID": "amzn1.application-oa2-client.16b6ba504383420c8e47684225a78375",
+        "AMAZON_CLIENT_SECRET": "10a1eaaed5a87a3c458ff2af4034e114d9adf3c8ff40779cd13f04163d5419c0",
+        "AMAZON_VENDOR_ID": "M3C5WFH4B7H46N",
+        "SEVER_PORT": "3000"
+      },
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "BoyyahLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/boyyah-alexa-skill-dev-boyyah"
+            }
+          },
+          "IamRoleLambdaExecution": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
+                    },
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "dev",
+                        "boyyah-alexa-skill",
+                        "lambda"
+                      ]
+                    ]
+                  },
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:CreateLogStream",
+                          "logs:CreateLogGroup"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/boyyah-alexa-skill-dev*:*"
+                          }
+                        ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:PutLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/boyyah-alexa-skill-dev*:*:*"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "Path": "/",
+              "RoleName": {
+                "Fn::Join": [
+                  "-",
+                  [
+                    "boyyah-alexa-skill",
+                    "dev",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    "lambdaRole"
+                  ]
+                ]
+              }
+            }
+          },
+          "BoyyahLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/boyyah-alexa-skill/dev/1579956879409-2020-01-25T12:54:39.409Z/boyyah-alexa-skill.zip"
+              },
+              "FunctionName": "boyyah-alexa-skill-dev-boyyah",
+              "Handler": "handlers/handler.handler",
+              "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "python3.7",
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "ALEXA_SKILL_ID": "amzn1.ask.skill.860230ae-65fe-45ff-923e-9550b02d8dd2",
+                  "AMAZON_CLIENT_ID": "amzn1.application-oa2-client.16b6ba504383420c8e47684225a78375",
+                  "AMAZON_CLIENT_SECRET": "10a1eaaed5a87a3c458ff2af4034e114d9adf3c8ff40779cd13f04163d5419c0",
+                  "AMAZON_VENDOR_ID": "M3C5WFH4B7H46N",
+                  "SEVER_PORT": "3000"
+                }
+              }
+            },
+            "DependsOn": [
+              "BoyyahLogGroup",
+              "IamRoleLambdaExecution"
+            ]
+          },
+          "BoyyahLambdaVersion6p3LIaEydAMSzqU1z2EuOFWGsMjl4hBBT9C4GcF11uU": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "BoyyahLambdaFunction"
+              },
+              "CodeSha256": "zhjeux32GaN9Yt/N5pkaEq0cOrP0kfLy1U/GYDrO6mI="
+            }
+          },
+          "BoyyahLambdaPermissionAlexaSkill1": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "BoyyahLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "alexa-appkit.amazon.com",
+              "EventSourceToken": "amzn1.ask.skill.860230ae-65fe-45ff-923e-9550b02d8dd2"
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          },
+          "BoyyahLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "BoyyahLambdaVersion6p3LIaEydAMSzqU1z2EuOFWGsMjl4hBBT9C4GcF11uU"
+            }
+          }
+        }
+      },
+      "coreCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      },
+      "vpc": {}
+    },
+    "custom": {
+      "pythonRequirements": {
+        "usePipenv": true
+      },
+      "alexa": {
+        "vendorId": "M3C5WFH4B7H46N",
+        "clientId": "amzn1.application-oa2-client.16b6ba504383420c8e47684225a78375",
+        "clientSecret": "10a1eaaed5a87a3c458ff2af4034e114d9adf3c8ff40779cd13f04163d5419c0",
+        "localServerPort": "3000",
+        "skills": [
+          {
+            "id": "amzn1.ask.skill.860230ae-65fe-45ff-923e-9550b02d8dd2",
+            "skillManifest": {
+              "publishingInformation": {
+                "locales": {
+                  "en-GB": {
+                    "name": "boyyah"
+                  }
+                }
+              },
+              "apis": {
+                "custom": {
+                  "endpoint": {
+                    "uri": {
+                      "Fn::GetAtt": [
+                        "boyyah",
+                        "Arn"
+                      ]
+                    }
+                  }
+                }
+              },
+              "manifestVersion": "1.0"
+            },
+            "models": {
+              "en-GB": {
+                "interactionModel": {
+                  "languageModel": {
+                    "invocationName": "boyyah",
+                    "intents": [
+                      {
+                        "name": "AMAZON.CancelIntent",
+                        "samples": []
+                      },
+                      {
+                        "name": "AMAZON.HelpIntent",
+                        "samples": []
+                      },
+                      {
+                        "name": "AMAZON.StopIntent",
+                        "samples": []
+                      },
+                      {
+                        "name": "AMAZON.ResumeIntent",
+                        "samples": []
+                      },
+                      {
+                        "name": "AMAZON.PauseIntent",
+                        "samples": []
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "plugins": [
+      "serverless-dotenv-plugin",
+      "serverless-alexa-skills",
+      "serverless-python-requirements"
+    ],
+    "pluginsData": {},
+    "functions": {
+      "boyyah": {
+        "handler": "handlers/handler.handler",
+        "events": [
+          {
+            "alexaSkill": "amzn1.ask.skill.860230ae-65fe-45ff-923e-9550b02d8dd2"
+          }
+        ],
+        "name": "boyyah-alexa-skill-dev-boyyah",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "python3.7",
+        "vpc": {},
+        "versionLogicalId": "BoyyahLambdaVersion6p3LIaEydAMSzqU1z2EuOFWGsMjl4hBBT9C4GcF11uU"
+      }
+    },
+    "serviceFilename": "serverless.yml",
+    "layers": {},
+    "isDashboardMonitoringPreconfigured": false,
+    "artifact": "/Users/alexcallow/Sites/boy-yah/alexa-skill/.serverless/boyyah-alexa-skill.zip"
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/boyyah-alexa-skill/dev/1579956879409-2020-01-25T12:54:39.409Z",
+    "artifact": "boyyah-alexa-skill.zip"
+  }
+}

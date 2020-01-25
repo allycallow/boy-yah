@@ -1,0 +1,25 @@
+{
+  "name": "boy-yah",
+  "version": "1.0.0",
+  "description": "alexa skill",
+  "scripts": {
+    "deploy": "sls deploy",
+    "deploy:dev": "sls deploy --stage dev",
+    "alexa:build": "sls alexa build",
+    "alexa:update": "sls alexa update"
+  },
+  "engines": {
+    "node": ">=12",
+    "yarn": ">=1.16.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "serverless": "^1.61.3"
+  },
+  "devDependencies": {
+    "serverless-alexa-skills": "^0.1.0",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-python-requirements": "^5.0.1"
+  }
+}

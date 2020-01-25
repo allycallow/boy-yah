@@ -1,0 +1,53 @@
+service: boyyah-alexa-skill
+
+provider:
+  name: aws
+  runtime: python3.7
+  region: eu-west-1
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-alexa-skills
+  - serverless-python-requirements
+
+functions:
+  boyyah:
+    handler: handlers/handler.handler
+    events:
+      - alexaSkill: ${env:ALEXA_SKILL_ID}
+custom:
+  pythonRequirements:
+    usePipenv: true
+  alexa:
+    vendorId: ${env:AMAZON_VENDOR_ID}
+    clientId: ${env:AMAZON_CLIENT_ID}
+    clientSecret: ${env:AMAZON_CLIENT_SECRET}
+    localServerPort: ${env:SEVER_PORT}
+    skills:
+      - id: ${env:ALEXA_SKILL_ID}
+        skillManifest:
+          publishingInformation:
+            locales:
+              en-GB:
+                name: boyyah
+          apis:
+            custom:
+              endpoint:
+                uri: { Fn::GetAtt: [boyyah, Arn] }
+          manifestVersion: "1.0"
+        models:
+          en-GB:
+            interactionModel:
+              languageModel:
+                invocationName: boyyah
+                intents:
+                  - name: AMAZON.CancelIntent
+                    samples: []
+                  - name: AMAZON.HelpIntent
+                    samples: []
+                  - name: AMAZON.StopIntent
+                    samples: []
+                  - name: AMAZON.ResumeIntent
+                    samples: []
+                  - name: AMAZON.PauseIntent
+                    samples: []
