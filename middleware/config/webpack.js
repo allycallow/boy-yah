@@ -4,7 +4,10 @@ const nodeExternals = require("webpack-node-externals");
 const slsw = require("serverless-webpack");
 const outputFolder = ".webpack";
 
-const { API_ENDPOINT } = slsw.lib.serverless.service.provider.environment;
+const {
+  API_ENDPOINT,
+  TOKEN
+} = slsw.lib.serverless.service.provider.environment;
 
 require("dotenv").config();
 
@@ -43,7 +46,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        API_ENDPOINT: JSON.stringify(API_ENDPOINT)
+        API_ENDPOINT: JSON.stringify(API_ENDPOINT),
+        TOKEN: JSON.stringify(TOKEN)
       }
     })
   ]

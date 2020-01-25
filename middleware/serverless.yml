@@ -9,6 +9,7 @@ provider:
 
   environment:
     API_ENDPOINT: ${env:API_ENDPOINT}
+    TOKEN: ${env:TOKEN}
 
 functions:
   handler:

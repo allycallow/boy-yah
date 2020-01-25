@@ -5,7 +5,7 @@ const getTest = async () => ({
 });
 
 const storeBloodPressure = async (root, { value }, context, info) => {
-  const { API_ENDPOINT } = process.env;
+  const { API_ENDPOINT, TOKEN } = process.env;
 
   const data = {
     "ctx/composer_name": "Alex Callow",
@@ -22,7 +22,7 @@ const storeBloodPressure = async (root, { value }, context, info) => {
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Basic am9obi5tZXJlZGl0aEB3YWxlcy5uaHMudWs6ZWhyNGpvaG4ubWVyZWRpdGg=`
+      Authorization: `Basic ${TOKEN}`
     }
   });
 
