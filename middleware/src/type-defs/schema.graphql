@@ -1,0 +1,5 @@
+#import "./type/test.graphql"
+
+type Query {
+  test: Test
+}

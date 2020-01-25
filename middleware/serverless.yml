@@ -1,0 +1,39 @@
+# https://serverless.com/blog/serverless-api-gateway-domain/
+
+service: middleware
+provider:
+  name: aws
+  runtime: nodejs10.x
+  apiGateway:
+    minimumCompressionSize: 1024
+  stage: ${opt:stage, 'dev'}
+  region: eu-west-2
+
+  environment:
+    API_ENDPOINT: ${env:BACKEND_ENDPOINT}
+
+functions:
+  handler:
+    handler: src/index.handler
+    name: ${opt:stage, 'dev'}-middleware
+    events:
+      - http:
+          method: GET
+          path: /{lol}
+          private: false
+          cors: true
+      - http:
+          method: POST
+          path: /{lol}
+          private: false
+          cors: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+custom:
+  webpack:
+    webpackConfig: "./config/webpack.js"
+    includeModules: true
+    packager: "yarn"

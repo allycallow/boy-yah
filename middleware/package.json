@@ -1,0 +1,45 @@
+{
+  "name": "middleware",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "yarn run serverless --stage local offline --port 4000 start",
+    "deploy:dev": "yarn run serverless --stage dev deploy",
+    "deploy:prod": "yarn run serverless --stage prod deploy",
+    "lint:eslint": "eslint 'src/**/*.js'",
+    "lint:eslint-fix": "eslint --fix 'src/**/*.js'",
+    "lint:prettier": "prettier 'src/**/*.js'",
+    "lint:graphql": "graphql-schema-linter 'src/type-defs/**/*.graphql'",
+    "generate": "graphql-codegen"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "10.15",
+    "yarn": ">=1.16.0"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.16",
+    "apollo-server-express": "^2.9.16",
+    "babel-loader": "^8.0.6",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.7.0",
+    "eslint-loader": "^3.0.3",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "graphql-playground-middleware-express": "^1.7.12",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.6",
+    "serverless-http": "^2.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "eslint": "^6.8.0",
+    "serverless": "^1.61.3",
+    "serverless-offline": "^5.12.1",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.41.5",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
