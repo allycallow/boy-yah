@@ -13,7 +13,7 @@ provider:
 functions:
   handler:
     handler: src/index.handler
-    name: ${opt:stage, 'dev'}-middleware
+    name: ${opt:stage, 'dev'}-middleware-boy-yah
     events:
       - http:
           method: GET
