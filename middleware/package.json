@@ -30,6 +30,7 @@
     "graphql-playground-middleware-express": "^1.7.12",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.6",
+    "node-fetch": "^2.6.0",
     "serverless-http": "^2.3.1"
   },
   "devDependencies": {
@@ -37,6 +38,7 @@
     "@babel/preset-env": "^7.8.3",
     "eslint": "^6.8.0",
     "serverless": "^1.61.3",
+    "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.3.1",
     "webpack": "^4.41.5",

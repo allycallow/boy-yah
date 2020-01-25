@@ -1,5 +1,3 @@
-# https://serverless.com/blog/serverless-api-gateway-domain/
-
 service: boy-yah-middleware
 provider:
   name: aws
@@ -10,7 +8,7 @@ provider:
   region: eu-west-2
 
   environment:
-    API_ENDPOINT: ${env:BACKEND_ENDPOINT}
+    API_ENDPOINT: ${env:API_ENDPOINT}
 
 functions:
   handler:
@@ -29,6 +27,7 @@ functions:
           cors: true
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
 
