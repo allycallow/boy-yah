@@ -1,5 +1,5 @@
 {
-  "name": "middleware",
+  "name": "boy-yah-middleware",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -12,8 +12,6 @@
     "lint:graphql": "graphql-schema-linter 'src/type-defs/**/*.graphql'",
     "generate": "graphql-codegen"
   },
-  "author": "",
-  "license": "ISC",
   "engines": {
     "node": "10.15",
     "yarn": ">=1.16.0"
@@ -21,10 +19,6 @@
   "dependencies": {
     "apollo-server": "^2.9.16",
     "apollo-server-express": "^2.9.16",
-    "babel-loader": "^8.0.6",
-    "dotenv": "^8.2.0",
-    "dotenv-webpack": "^1.7.0",
-    "eslint-loader": "^3.0.3",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
     "graphql-playground-middleware-express": "^1.7.12",
@@ -36,7 +30,15 @@
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.7.0",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
     "serverless": "^1.61.3",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^5.12.1",

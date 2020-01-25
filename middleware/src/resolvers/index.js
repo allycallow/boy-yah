@@ -4,7 +4,7 @@ const getTest = async () => ({
   ok: true
 });
 
-const storeBloodPressure = async (root, { value }, context, info) => {
+const storeBloodPressure = async (root, { value }) => {
   const { API_ENDPOINT, TOKEN } = process.env;
 
   const data = {
