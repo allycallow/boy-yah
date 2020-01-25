@@ -11,7 +11,7 @@ plugins:
   - serverless-python-requirements
 
 functions:
-  boyyah:
+  blood-pressure:
     handler: handlers/handler.handler
     events:
       - alexaSkill: ${env:ALEXA_SKILL_ID}
@@ -51,3 +51,9 @@ custom:
                     samples: []
                   - name: AMAZON.PauseIntent
                     samples: []
+                  - name: BloodPressure
+                    slots:
+                      - name: number
+                        type: AMAZON.NUMBER
+                    samples:
+                      - "store my blood pressure {number}"
