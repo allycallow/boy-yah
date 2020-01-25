@@ -12,7 +12,7 @@ plugins:
 
 functions:
   blood-pressure:
-    handler: handlers/handler.handler
+    handler: handler.handler
     events:
       - alexaSkill: ${env:ALEXA_SKILL_ID}
 custom:

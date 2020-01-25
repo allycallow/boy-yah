@@ -1,6 +1,7 @@
 import logging
 from ask_sdk_core.utils import is_intent_name
 from ask_sdk_core.skill_builder import SkillBuilder
+from utils.api_services import ApiServices
 
 sb = SkillBuilder()
 
@@ -17,7 +18,6 @@ def help_intent_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("BloodPressure"))
 def blood_pressure_intent_handler(handler_input):
-    """Handler for Lucky Number sIntent."""
     logger.info(f"BloodPressure")
     response_builder = handler_input.response_builder
 
@@ -25,6 +25,9 @@ def blood_pressure_intent_handler(handler_input):
     number = handler_input.request_envelope.request.intent.slots[
         "number"
     ].value
+
+    api_services = ApiServices()
+    api_services.store_blood_pressure()
 
     speech_text = f"working {number}"
 
