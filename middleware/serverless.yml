@@ -1,6 +1,6 @@
 # https://serverless.com/blog/serverless-api-gateway-domain/
 
-service: middleware
+service: boy-yah-middleware
 provider:
   name: aws
   runtime: nodejs10.x
