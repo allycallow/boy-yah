@@ -15,15 +15,15 @@ TERRITORY = "GB"
 
 
 class ApiServices:
-    def store_blood_pressure(self, bp_number):
+    def store_blood_pressure(self, systolic_number, diastolic_number):
         logger.info("store_blood_pressure fired")
         data = {
             'ctx/composer_name': COMPOSER_NAME,
             "ctx/language": LANGUAGE,
             "ctx/territory": TERRITORY,
-            "nhshd23_boyaa/blood_pressure/systolic|magnitude": bp_number,
+            "nhshd23_boyaa/blood_pressure/systolic|magnitude": systolic_number,
             "nhshd23_boyaa/blood_pressure/systolic|unit": "mm[Hg]",
-            "nhshd23_boyaa/blood_pressure/diastolic|magnitude": 80,
+            "nhshd23_boyaa/blood_pressure/diastolic|magnitude": diastolic_number,
             "nhshd23_boyaa/blood_pressure/diastolic|unit": "mm[Hg]"
         }
 
