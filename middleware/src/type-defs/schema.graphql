@@ -1,5 +1,10 @@
 #import "./type/test.graphql"
+#import "./type/blood-pressure-response.graphql"
 
 type Query {
   test: Test
+}
+
+type Mutation {
+  store_blood_pressure(value: Int): BloodPressureRespone
 }
