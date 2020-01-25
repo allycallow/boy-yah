@@ -146,7 +146,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/boyyah-alexa-skill/dev/1579968173557-2020-01-25T16:02:53.557Z/boyyah-alexa-skill.zip"
+          "S3Key": "serverless/boyyah-alexa-skill/dev/1579968920895-2020-01-25T16:15:20.895Z/boyyah-alexa-skill.zip"
         },
         "FunctionName": "boyyah-alexa-skill-dev-blood-pressure",
         "Handler": "handler.handler",
@@ -174,14 +174,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "BloodDashpressureLambdaVersioneUmNSCz2gZvyaXYtMj7aWCZ24KRaq5jRyEJW9lFpM": {
+    "BloodDashpressureLambdaVersion8Z3wViAZDO7e7d9JxSav0Ow2OjtQKEyxLTBeC05g": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "BloodDashpressureLambdaFunction"
         },
-        "CodeSha256": "Tdz9cnoKarj+p+zdWVX2vKS8S4ao+rukNjIumhqvXHo="
+        "CodeSha256": "YuM/xvwj20zVYVW1puXdnDBFno4ulMgHPJXzt5RD8F8="
       }
     },
     "BloodDashpressureLambdaPermissionAlexaSkill1": {
@@ -208,7 +208,7 @@
     "BloodDashpressureLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "BloodDashpressureLambdaVersioneUmNSCz2gZvyaXYtMj7aWCZ24KRaq5jRyEJW9lFpM"
+        "Ref": "BloodDashpressureLambdaVersion8Z3wViAZDO7e7d9JxSav0Ow2OjtQKEyxLTBeC05g"
       }
     }
   }
