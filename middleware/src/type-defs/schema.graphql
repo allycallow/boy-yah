@@ -6,5 +6,8 @@ type Query {
 }
 
 type Mutation {
-  store_blood_pressure(value: Int): BloodPressureRespone
+  store_blood_pressure(
+    systolic_number: Int!
+    diastolic_number: Int!
+  ): BloodPressureRespone
 }
