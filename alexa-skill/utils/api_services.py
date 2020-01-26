@@ -37,3 +37,24 @@ class ApiServices:
             logger.info("successfully stored record")
             return r.json()
         raise Exception("something went wrong")
+
+    def store_peak_flow_rate(self, peak_flow_rate):
+        logger.info("peak_flow_rate fired")
+        data = {
+            'ctx/composer_name': COMPOSER_NAME,
+            "ctx/language": LANGUAGE,
+            "ctx/territory": TERRITORY,
+            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result/actual_result": peak_flow_rate,
+            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result|unit": "l/min"
+        }
+
+        headers = {'content-type': 'application/json', "Authorization": f"Basic {TOKEN}"}
+        r = requests.post(url=API_ENDPOINT, data=json.dumps(data), headers=headers)
+
+        print(r.status_code)
+        print(r.json())
+
+        if r.status_code == 200:
+            logger.info("successfully stored record")
+            return r.json()
+        raise Exception("something went wrong")
