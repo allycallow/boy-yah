@@ -4,6 +4,7 @@ from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_model.ui import SimpleCard
 from utils.api_services import ApiServices
 from utils.email_services import EmailServices
+from enum import Enum
 
 sb = SkillBuilder()
 
@@ -11,14 +12,49 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
+class State(Enum):
+    DO_YOU_WANT_TO_STORE_BLOOD_PRESSURE = 1
+    AWAITING_BLOOD_PRESSURE_READING = 2
+
+
+def current_state(input):
+    session_attr = handler_input.attributes_manager.session_attributes
+
+    if ("state" in session_attr):
+        raise Exception("TODO: Handle this properly...")
+
+    return session_attr["state"]
+
+
+def set_state(handler_input, newState):
+    attr = handler_input.attributes_manager.persistent_attributes
+    attr['state'] = newState
+    handler_input.attributes_manager.session_attributes = attr
+
+
 @sb.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
-    """Handler for Skill Launch."""
-    speech_text = "Welcome to the Alexa Skills Kit, you can say hello!"
 
-    return handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Hello World", speech_text)).set_should_end_session(
-        False).response
+    set_state(handler_input, State.DO_YOU_WANT_TO_STORE_BLOOD_PRESSURE)
+
+    return handler_input.response_builder.speak("Would you like to record your blood pressure?").response
+
+
+@sb.request_handler(can_handle_func=lambda input:
+                    current_state(input) == State.DO_YOU_WANT_TO_STORE_BLOOD_PRESSURE and
+                    is_intent_name("AMAZON.YesIntent")(input))
+def store_blood_pressure_yes_handler(handler_input):
+
+    set_state(handler_input, State.AWAITING_BLOOD_PRESSURE_READING)
+
+    return handler_input.response_builder.speak("Please tell me your blood pressure?").response
+
+
+@sb.request_handler(can_handle_func=lambda input:
+                    current_state(input) == State.AWAITING_BLOOD_PRESSURE_READING and
+                    is_intent_name("BloodPressureReading")(input))
+def blood_pressure_reading_handler(handler_input):
+    store_blood_pressure(handler_input)
 
 
 @sb.request_handler(can_handle_func=is_intent_name("AMAZON.HelpIntent"))
@@ -30,6 +66,10 @@ def help_intent_handler(handler_input):
 
 @sb.request_handler(can_handle_func=is_intent_name("StoreBloodPressure"))
 def blood_pressure_intent_handler(handler_input):
+    store_blood_pressure(handler_input)
+
+
+def store_blood_pressure(handler_input):
     logger.info(f"StoreBloodPressure")
     response_builder = handler_input.response_builder
 
