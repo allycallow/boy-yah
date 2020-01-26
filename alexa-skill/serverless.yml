@@ -59,7 +59,7 @@ custom:
                     samples: []
                   - name: AMAZON.PauseIntent
                     samples: []
-                  - name: BloodPressure
+                  - name: StoreBloodPressure
                     slots:
                       - name: systolic_number
                         type: AMAZON.NUMBER
@@ -67,7 +67,7 @@ custom:
                         type: AMAZON.NUMBER
                     samples:
                       - "store my blood pressure {systolic_number} over {diastolic_number}"
-                  - name: PeakFlowRate
+                  - name: StorePeakFlowRate
                     slots:
                       - name: peak_flow_rate
                         type: AMAZON.NUMBER
