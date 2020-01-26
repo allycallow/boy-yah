@@ -4,6 +4,15 @@ provider:
   name: aws
   runtime: python3.7
   region: eu-west-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ses:send_email"
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - Ref: blood-pressure
 
 plugins:
   - serverless-dotenv-plugin
