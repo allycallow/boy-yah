@@ -74,3 +74,6 @@ custom:
                         type: AMAZON.NUMBER
                     samples:
                       - "store my peak flow rate {peak_flow_rate}"
+                  - name: SendToDoctor
+                    samples:
+                      - "send my details to my doctor"

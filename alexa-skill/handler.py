@@ -85,4 +85,17 @@ def all_exception_handler(handler_input, exception):
     return handler_input.response_builder.response
 
 
+@sb.request_handler(can_handle_func=is_intent_name("SendToDoctor"))
+def send_to_doctor_intent_handler(handler_input):
+    logger.info(f"SendToDoctor")
+    response_builder = handler_input.response_builder
+
+    email_services = EmailServices()
+    email_services.send_mail()
+
+    speech_text = f"Your doctor has now been sent your records."
+
+    return response_builder.speak(speech_text).set_should_end_session(False).response
+
+
 handler = sb.lambda_handler()
