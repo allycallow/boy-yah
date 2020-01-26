@@ -54,7 +54,7 @@ class ApiServices:
         print(r.status_code)
         print(r.json())
 
-        if r.status_code == 200:
+        if r.ok:
             logger.info("successfully stored record")
             return r.json()
         raise Exception("something went wrong")
