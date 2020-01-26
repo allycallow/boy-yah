@@ -61,3 +61,9 @@ custom:
                         type: AMAZON.NUMBER
                     samples:
                       - "store my blood pressure {systolic_number} over {diastolic_number}"
+                  - name: PeakFlowRate
+                    - slots:
+                      - name: peak_flow_rate
+                        type: AMAZON.NUMBER
+                    samples:
+                      - "store my peak flow rate {peak_flow_rate}"
