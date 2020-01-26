@@ -44,7 +44,7 @@ class ApiServices:
             'ctx/composer_name': COMPOSER_NAME,
             "ctx/language": LANGUAGE,
             "ctx/territory": TERRITORY,
-            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result/actual_result": peak_flow_rate,
+            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result/actual_result|magnitude": peak_flow_rate,
             "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result|unit": "l/min"
         }
 
@@ -72,6 +72,6 @@ class ApiServices:
         print(r.json())
 
         if r.ok:
-            logger.info("successfully stored record")
+            logger.info("successfully got csv")
             return r.json()
         raise Exception("something went wrong")
