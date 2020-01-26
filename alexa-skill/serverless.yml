@@ -121,3 +121,10 @@ custom:
                     samples:
                       - "{systolic_number} over {diastolic_number}"
                       - "it's {systolic_number} over {diastolic_number}"
+                  - name: PeakFlowRateReading
+                    slots:
+                      - name: peak_flow_rate
+                        type: AMAZON.NUMBER
+                    samples:
+                      - "{peak_flow_rate}"
+                      - "it's {peak_flow_rate}"
