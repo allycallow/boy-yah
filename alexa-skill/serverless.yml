@@ -7,7 +7,7 @@ provider:
   iamRoleStatements:
     - Effect: "Allow"
       Action:
-        - "ses:send_email"
+        - "ses:SendEmail"
       Resource: "*"
 
 plugins:

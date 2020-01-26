@@ -71,7 +71,7 @@ class ApiServices:
         r = requests.post(url=f"{API_ENDPOINT}/query/csv", data=json.dumps(data), headers=self.headers)
 
         print(r.status_code)
-        print(r)
+        print(r.text)
 
         if r.ok:
             logger.info("successfully got csv")

@@ -4,10 +4,9 @@ from utils.api_services import ApiServices
 
 # ian.mcnicoll@gmail.com
 
-SENDER = "Sender Name <allycallow@hotmail.com>"
-RECIPIENT = "allycallow@hotmail.com"
-CONFIGURATION_SET = "ConfigSet"
-AWS_REGION = "us-west-2"
+SENDER = "alex@upfrontbeats.com"
+RECIPIENT = "alex@upfrontbeats.com"
+AWS_REGION = "eu-west-1"
 
 CHARSET = "UTF-8"
 
@@ -64,10 +63,7 @@ class EmailServices:
                         'Data': SUBJECT,
                     },
                 },
-                Source=SENDER,
-                # If you are not using a configuration set, comment or delete the
-                # following line
-                ConfigurationSetName=CONFIGURATION_SET,
+                Source=SENDER
             )
             print(response)
         # Display an error if something goes wrong.
