@@ -4,6 +4,11 @@ provider:
   name: aws
   runtime: python3.7
   region: eu-west-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+      Resource: "*"
 
 plugins:
   - serverless-dotenv-plugin
@@ -65,3 +70,7 @@ custom:
                         type: AMAZON.NUMBER
                     samples:
                       - "store my peak flow rate {peak_flow_rate}"
+                  - name: SendToDoctor
+                    samples:
+                      - "send my details to my doctor"
+                      - "send to doctor"
