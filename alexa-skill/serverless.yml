@@ -21,7 +21,7 @@ provider:
   environment:
     SENDER: ${env:SENDER}
     RECIPIENT: ${env:RECIPIENT}
-    ALEXA_STATE_BUCKET: ${env:RECIPIENT}
+    ALEXA_STATE_BUCKET: ${self:custom.bucketName}
 
 plugins:
   - serverless-dotenv-plugin
@@ -39,7 +39,7 @@ resources:
     AlexaState:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: nhs-day-alexa-state
+        BucketName: ${self:custom.bucketName}
         AccessControl: PublicRead
         CorsConfiguration:
           CorsRules:
@@ -56,6 +56,7 @@ resources:
               MaxAge: 3000
 
 custom:
+  bucketName: nhs-day-alexa-state
   pythonRequirements:
     usePipenv: true
   alexa:
