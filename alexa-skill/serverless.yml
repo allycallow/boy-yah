@@ -59,6 +59,8 @@ custom:
                     samples: []
                   - name: AMAZON.PauseIntent
                     samples: []
+                  - name: AMAZON.YesIntent
+                    samples: []
                   - name: StoreBloodPressure
                     slots:
                       - name: systolic_number
@@ -77,3 +79,12 @@ custom:
                     samples:
                       - "send my details to my doctor"
                       - "send to doctor"
+                  - name: BloodPressureReading
+                    slots:
+                      - name: systolic_number
+                        type: AMAZON.NUMBER
+                      - name: diastolic_number
+                        type: AMAZON.NUMBER
+                    samples:
+                      - "{systolic_number} over {diastolic_number}"
+                      - "it's {systolic_number} over {diastolic_number}"
