@@ -18,7 +18,7 @@ class State(Enum):
 
 
 def current_state(input):
-    session_attr = handler_input.attributes_manager.session_attributes
+    session_attr = input.attributes_manager.session_attributes
 
     if ("state" in session_attr):
         raise Exception("TODO: Handle this properly...")

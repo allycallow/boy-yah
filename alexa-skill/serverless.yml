@@ -9,9 +9,19 @@ provider:
       Action:
         - "ses:SendEmail"
       Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "*"
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - "Ref": "AlexaState"
+            - "/*"
   environment:
     SENDER: ${env:SENDER}
     RECIPIENT: ${env:RECIPIENT}
+    ALEXA_STATE_BUCKET: ${env:RECIPIENT}
 
 plugins:
   - serverless-dotenv-plugin
@@ -23,6 +33,28 @@ functions:
     handler: handler.handler
     events:
       - alexaSkill: ${env:ALEXA_SKILL_ID}
+
+resources:
+  Resources:
+    AlexaState:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: nhs-day-alexa-state
+        AccessControl: PublicRead
+        CorsConfiguration:
+          CorsRules:
+            - AllowedOrigins:
+                - "*"
+              AllowedHeaders:
+                - "*"
+              AllowedMethods:
+                - GET
+                - PUT
+                - POST
+                - DELETE
+                - HEAD
+              MaxAge: 3000
+
 custom:
   pythonRequirements:
     usePipenv: true
