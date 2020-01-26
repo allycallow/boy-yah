@@ -45,7 +45,7 @@ class ApiServices:
             "ctx/language": LANGUAGE,
             "ctx/territory": TERRITORY,
             "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result/actual_result|magnitude": peak_flow_rate,
-            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result|unit": "l/min"
+            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result/actual_result|unit": "l/min"
         }
 
         headers = {'content-type': 'application/json', "Authorization": f"Basic {TOKEN}"}
