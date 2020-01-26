@@ -11,13 +11,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-@sb.request_handler(can_handle_func=is_intent_name("AMAZON.LaunchIntent"))
-def launch_intent_handler(handler_input):
-    logger.info("In HelpLaunchIntent")
-    handler_input.response_builder.speak("Boy yah here, how can I help?")
-    return handler_input.response_builder.response
-
-
 @sb.request_handler(can_handle_func=is_request_type("LaunchRequest"))
 def launch_request_handler(handler_input):
     """Handler for Skill Launch."""
