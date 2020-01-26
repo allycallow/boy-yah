@@ -47,7 +47,7 @@ class ApiServices:
             "ctx/language": LANGUAGE,
             "ctx/territory": TERRITORY,
             "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result/actual_result|magnitude": peak_flow_rate,
-            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result|unit": "l/min"
+            "nhshd23_boyaa/peak_flow_rate/result_details/pulmonary_flow_rate_result/actual_result|unit": "l/min"
         }
 
         r = requests.post(url=f"{API_ENDPOINT}/composition?ehrId=5f4401c5-071a-4b4e-8426-6f2ccb32fb04&templateId=NHSHD23%20BoYaA&committerName=Alexa&format=FLAT", data=json.dumps(data), headers=self.headers)
