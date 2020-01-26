@@ -8,11 +8,7 @@ provider:
     - Effect: "Allow"
       Action:
         - "ses:send_email"
-      Resource:
-        Fn::Join:
-          - ""
-          - - "arn:aws:s3:::"
-            - Ref: blood-pressure
+      Resource: "*"
 
 plugins:
   - serverless-dotenv-plugin
@@ -77,3 +73,4 @@ custom:
                   - name: SendToDoctor
                     samples:
                       - "send my details to my doctor"
+                      - "send to doctor"

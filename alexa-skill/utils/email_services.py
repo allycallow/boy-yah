@@ -1,5 +1,6 @@
 import boto3
 from botocore.exceptions import ClientError
+from utils.api_services import ApiServices
 
 # ian.mcnicoll@gmail.com
 
@@ -33,8 +34,13 @@ BODY_HTML = """<html>
 class EmailServices:
     def __init__(self):
         self.client = boto3.client('ses', region_name=AWS_REGION)
+        self.api_services = ApiServices()
 
     def send_mail(self):
+        csv = self.api_services.get_csv()
+
+        print(csv)
+
         try:
             response = self.client.send_email(
                 Destination={
@@ -63,6 +69,7 @@ class EmailServices:
                 # following line
                 ConfigurationSetName=CONFIGURATION_SET,
             )
+            print(response)
         # Display an error if something goes wrong.
         except ClientError as e:
             print(e.response['Error']['Message'])
