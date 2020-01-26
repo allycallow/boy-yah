@@ -41,8 +41,6 @@ custom:
               languageModel:
                 invocationName: boy yah
                 intents:
-                  - name: AMAZON.LaunchIntent
-                    samples: []
                   - name: AMAZON.CancelIntent
                     samples: []
                   - name: AMAZON.HelpIntent
