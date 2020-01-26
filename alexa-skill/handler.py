@@ -28,9 +28,9 @@ def help_intent_handler(handler_input):
     return handler_input.response_builder.response
 
 
-@sb.request_handler(can_handle_func=is_intent_name("BloodPressure"))
+@sb.request_handler(can_handle_func=is_intent_name("StoreBloodPressure"))
 def blood_pressure_intent_handler(handler_input):
-    logger.info(f"BloodPressure")
+    logger.info(f"StoreBloodPressure")
     response_builder = handler_input.response_builder
 
     print(handler_input.request_envelope.request)
@@ -48,9 +48,9 @@ def blood_pressure_intent_handler(handler_input):
     return response_builder.speak(speech_text).set_should_end_session(False).response
 
 
-@sb.request_handler(can_handle_func=is_intent_name("PeakFlowRate"))
+@sb.request_handler(can_handle_func=is_intent_name("StorePeakFlowRate"))
 def peak_flow_rate_intent_handler(handler_input):
-    logger.info(f"PeakFlowRate")
+    logger.info(f"StorePeakFlowRate")
     response_builder = handler_input.response_builder
 
     print(handler_input.request_envelope.request)
