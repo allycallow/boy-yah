@@ -9,6 +9,9 @@ provider:
       Action:
         - "ses:SendEmail"
       Resource: "*"
+  environment:
+    SENDER: ${env:SENDER}
+    RECIPIENT: ${env:RECIPIENT}
 
 plugins:
   - serverless-dotenv-plugin

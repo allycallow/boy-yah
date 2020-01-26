@@ -47,9 +47,6 @@ def blood_pressure_intent_handler(handler_input):
     api_services = ApiServices()
     api_services.store_blood_pressure(systolic_number, diastolic_number)
 
-    email_services = EmailServices()
-    email_services.send_mail()
-
     speech_text = f"working {systolic_number} {diastolic_number}"
 
     return response_builder.speak(speech_text).set_should_end_session(False).response

@@ -75,5 +75,5 @@ class ApiServices:
 
         if r.ok:
             logger.info("successfully got csv")
-            return r
+            return r.text
         raise Exception("something went wrong")
